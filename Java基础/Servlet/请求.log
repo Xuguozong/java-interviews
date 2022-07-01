@@ -1,0 +1,36 @@
+﻿1. 文件上传
+	满足以下两种情况之一，servlet容器会处理 multipart/form-data 数据格式的数据：
+	1）使用了 @MultipartConfig 注解
+	2）部署描述符中包含了 multipart-config 元素
+	如何可用：
+	1）如果servlet支持multipart/form-data数据处理，可通过HttpServletRequest的getParts()和getPart(String name)方法获取
+	2）如果不支持，可通过HttpServletRequest的getInputStream()方法得到数据流
+	
+2. 请求路径元素
+	1）Context Path 请求上下文
+	2）Servlet Path 路径部分直接与激活请求的映射对应
+	3）Pathinfo 请求路径的一部分
+	
+3. 路径转换方法
+	获取和某个特定路径等价的文件系统路径：
+	ServletContext.getRealPath(String path)
+	HttpServletRequest.getPathTranslated() 负责推断出请求的pathinfo的实际路径
+	
+4. 非阻塞IO
+	非阻塞IO只在异步处理或升级处理时有效，否则调用ServletInputStream.setReadLister或ServletOutputStream.setWriteListener时会跑走出IllegalStateException
+
+5. SSL属性
+	ServletRequest的isSecure方法公开请求是否通过安全协议发送。Web容器必须公开以下属性给servlet开发者：
+	密码套件      --->  javax.servlet.request.cipher_suite
+	算法的位大小  --->  javax.servlet.request.key_size
+	SSL会话ID     --->  javax.servlet.request.ssl_session_id
+
+6. 请求对象声明周期
+	正常情况在servlet的service方法和过滤器的doFilter方法的作用域内。异步处理情况，在request的startAsync方法调用之后、AsyncContext的complete方法调用为止
+	
+7. ServletContext接口
+	定义了servlet运行在Web应用中的视图，由应用容器提供其实现，它是应用服务器中一直路径的根。每一个部署到容器的web应用都有一个ServletContext实例与之对应
+	
+8. 资源
+	getResource/getResourceAsStream 用于访问静态内容层次结构的文件
+	参数为"/"，给定的资源路径是相对于上下文的根，或者web应用WEB-INF/lib目录下jar包中的META-INF/resources目录

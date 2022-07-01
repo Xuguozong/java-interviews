@@ -1,0 +1,34 @@
+几个问题：
+	1. 异常后解锁失败导致后续执行失败 - 没有解锁补偿措施
+	2. 并发导致获取独占锁失败
+	3. Spring Scheduled 原理
+		- @EnableScheduling
+		- @Import(SchedulingConfiguration.class)
+		- new ScheduledAnnotationBeanPostProcessor()
+		- ScheduledTaskRegistrar
+		- TaskScheduler + ScheduledExecutorService
+		- 核心逻辑：通过 @Scheduled 注册定时任务到 ScheduledTaskRegistrar 中，然后通过任务调用线程池(ScheduledExecutorService)定时执行定时任务
+	4. for update 方式获取数据库锁
+		- 测试通过
+		- 问题：任务执行的时间粒度不可控
+	5. Java profiler 的目标内容和可以实现的一些技术以及业界都有哪些工具和案例
+		- 1）改变类结构、字节码文件等，JVM 级别 AOP ---- Instrumentation(JVMTI)/javaassist/ASM
+	6. PM 方面
+		- 项目开发、测试、部署流程
+		- team 成员扩张/收缩对现有组织架构的挑战
+		- DEVOPS、APM 和 CI/CD 的收益
+	7. 复习计划
+		- 内容：
+			- 学习新知识/复习旧知识的时间比例和绝对时间分配
+			- 学习效率的衡量指标和改进策略
+		- 形式：以 md 清单形式或者 ipad 日程形式做计划管理和复盘
+	8. afs 服务拆分
+		- 流程梳理
+			- 考虑：核心流程-边缘流程-未来规划
+		- 数据梳理
+			- 考虑：数据流向-数据存储-数据存储结构
+		- 服务边界划分
+			- 参考：原型-网站-代码分包逻辑-公司组织架构-同类型业务公司技术架构
+	9. 缺失单元测试的本地测试的有效性要如何保证？
+	10. JVM 内存问题方法论总结
+		- 有什么问题？有设定目标吗？

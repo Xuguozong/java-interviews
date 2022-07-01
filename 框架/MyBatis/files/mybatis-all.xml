@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties">
+        <property name="username" value="root" />
+        <property name="password" value="123456" />
+    </properties>
+    <settings>
+        <setting name="localCacheScope" value="STATEMENT"/>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useColumnLabel" value="true" />
+        <setting name="useGeneratedKeys" value="false" />
+        <setting name="defaultExecutorType" value="REUSE" />
+        <setting name="defaultStatementTimeout" value="25000" />
+    </settings>
+    <typeAliases>
+        <typeAlias alias="Activity" type="com.dolceviva.entity.Activity" />
+        <typeAlias alias="Award" type="com.dolceviva.entity.Award" />
+        <typeAlias alias="Customer" type="com.dolceviva.entity.Customer" />
+        <typeAlias alias="Record" type="com.dolceviva.entity.Record" />
+        <typeAlias alias="User" type="com.dolceviva.entity.User" />
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.dolceviva.typehandlers.PhoneTypeHandler" />
+    </typeHandlers>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/dolceviva/mappers/ActivityMapper.xml" />
+        <mapper resource="com/dolceviva/mappers/AwardMapper.xml" />
+        <mapper resource="com/dolceviva/mappers/CustomerMapper.xml" />
+        <mapper resource="com/dolceviva/mappers/RecordMapper.xml" />
+        <mapper resource="com/dolceviva/mappers/UserMapper.xml" />
+    </mappers>
+</configuration>

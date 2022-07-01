@@ -1,0 +1,8 @@
+version: '2'
+services:
+  afs:
+    image: afs:v1
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://test.aifusheng.com:3306/aifuxiaosheng?autoReconnect=true&useSSL=false&allowMultiQueries=true&useTimezone=true&s&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai

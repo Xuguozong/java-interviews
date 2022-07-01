@@ -1,0 +1,184 @@
+version: '3.8'
+services:
+  redis-node-master-1:
+    image: redis:5.0.14
+    container_name: cluster-redis-1
+    ports:
+      - 6381:6379
+      - 16381:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6381 \
+      --cluster-announce-bus-port 16381"
+    volumes:
+      - C:\data\rediscluster\data\redis1:/data
+  redis-node-master-2:
+    image: redis:5.0.14
+    container_name: cluster-redis-2
+    ports:
+      - 6382:6379
+      - 16382:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6382 \
+      --cluster-announce-bus-port 16382"
+    volumes:
+      - C:\data\rediscluster\data\redis2:/data
+  redis-node-master-3:
+    image: redis:5.0.14
+    container_name: cluster-redis-3
+    ports:
+      - 6383:6379
+      - 16383:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6383 \
+      --cluster-announce-bus-port 16383"
+    volumes:
+      - C:\data\rediscluster\data\redis3:/data
+  redis-node-slave-1:
+    image: redis:5.0.14
+    container_name: cluster-redis-1-slave
+    ports:
+      - 6384:6379
+      - 16384:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6384 \
+      --cluster-announce-bus-port 16384"
+    volumes:
+      - C:\data\rediscluster\data\redis1-slave:/data
+  redis-node-slave-2:
+    image: redis:5.0.14
+    container_name: cluster-redis-2-slave
+    ports:
+      - 6385:6379
+      - 16385:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6385 \
+      --cluster-announce-bus-port 16385"
+    volumes:
+      - C:\data\rediscluster\data\redis2-slave:/data
+  redis-node-slave-3:
+    image: redis:5.0.14
+    container_name: cluster-redis-3-slave
+    ports:
+      - 6386:6379
+      - 16386:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6386 \
+      --cluster-announce-bus-port 16386"
+    volumes:
+      - C:\data\rediscluster\data\redis3-slave:/data
+version: '3.8'
+services:
+  redis-node-master-1:
+    image: redis:5.0.14
+    container_name: cluster-redis-1
+    ports:
+      - 6381:6379
+      - 16381:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6381 \
+      --cluster-announce-bus-port 16381"
+    volumes:
+      - C:\data\rediscluster\data\redis1:/data
+  redis-node-master-2:
+    image: redis:5.0.14
+    container_name: cluster-redis-2
+    ports:
+      - 6382:6379
+      - 16382:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6382 \
+      --cluster-announce-bus-port 16382"
+    volumes:
+      - C:\data\rediscluster\data\redis2:/data
+  redis-node-master-3:
+    image: redis:5.0.14
+    container_name: cluster-redis-3
+    ports:
+      - 6383:6379
+      - 16383:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6383 \
+      --cluster-announce-bus-port 16383"
+    volumes:
+      - C:\data\rediscluster\data\redis3:/data
+  redis-node-slave-1:
+    image: redis:5.0.14
+    container_name: cluster-redis-1-slave
+    ports:
+      - 6384:6379
+      - 16384:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6384 \
+      --cluster-announce-bus-port 16384"
+    volumes:
+      - C:\data\rediscluster\data\redis1-slave:/data
+  redis-node-slave-2:
+    image: redis:5.0.14
+    container_name: cluster-redis-2-slave
+    ports:
+      - 6385:6379
+      - 16385:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6385 \
+      --cluster-announce-bus-port 16385"
+    volumes:
+      - C:\data\rediscluster\data\redis2-slave:/data
+  redis-node-slave-3:
+    image: redis:5.0.14
+    container_name: cluster-redis-3-slave
+    ports:
+      - 6386:6379
+      - 16386:16379
+    command: "redis-server --requirepass 123456 --masterauth 123456 --appendonly yes \
+      --cluster-enabled yes \
+      --cluster-config-file nodes.conf \
+      --cluster-node-timeout 15000 \
+      --cluster-announce-ip 192.168.112.1 \
+      --cluster-announce-port 6386 \
+      --cluster-announce-bus-port 16386"
+    volumes:
+      - C:\data\rediscluster\data\redis3-slave:/data

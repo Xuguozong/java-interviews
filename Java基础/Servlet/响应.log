@@ -1,0 +1,16 @@
+﻿1. 缓冲
+	servlet容器容许（但不要求）缓存输出到客户端的内容，以下是ServletResponse接口的相关方法：
+	getBufferSize/setBufferSize/isCommitted/reset/flushBuffer/resetBuffer
+	1）setBufferSize 必须在ServletOutputStream或Writer的写方法之前调用，否则抛出IllegalStateException
+	2）isCommitted 表示是否有响应字节已经返回到客户端
+	3）flushBuffer 强制刷出缓存区的内容到客户端
+	4）reset 响应未提交之前清空缓存区数据
+	5）resetBuffer 响应未提交之前清空缓存区数据
+	
+2. 结束响应对象
+	当响应被关闭时，容器必须立即刷出响应缓存区中的所有剩余内容到客户端：
+	1）service方法终止
+	2）setContentLength和setContentLengthLong已生效并写入到响应中
+	3）sendError已经调用
+	4）sendRedirect已经调用
+	5）AsyncContext的complete方法已经调用

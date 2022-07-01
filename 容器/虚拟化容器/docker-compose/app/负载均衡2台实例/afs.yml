@@ -1,0 +1,14 @@
+version: '2'
+services:
+  afs-1:
+    image: afs:v1
+    ports:
+      - 8080:8080  
+  afs-web:
+    image: afs-web:v1
+    depends_on:
+      - afs-1
+    links:
+      - afs-1
+    ports:
+      - 80:80

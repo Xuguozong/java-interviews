@@ -1,0 +1,25 @@
+﻿1. 实例数量
+	通常单实例（注解描述和部署描述的）
+	
+2. 生命周期
+	1）加载和实例化
+		发生在容器启动时或延迟初始化直到容器决定有请求需要处理时。类加载器加载本地、远程文件系统或网络服务的servlet类。
+	2）初始化
+		init(ServletConfig config) ServletConfig 包含 ServletContext 对象
+		错误处理：初始化阶段可能会抛出UnavailableException或ServletException,servlet容器会释放它。如果初始化没有成功，destroy方法不应该被调用
+	3）请求处理
+		service(ServletRequest req, ServletResponse res)
+		异常处理：
+			ServletException：处理请求时出现的错误，容器应当采取适当措施清理掉这个请求
+			UnavailableException：临时性的或者永久性的无法处理请求
+				永久性的：移除servlet，调用destroy，释放servlet实例，返回SC_NOT_FOUND(404)响应
+				临时性的：可选择在临时不可用的这段时间内路由任何请求到Servlet，被拒绝的请求会返回SC_SERVICE_UNAVAILABLE(503)响应，同时返回Retry-After头指示此servlet何时可用。
+		异步处理：
+			A. 请求 ---> Filter ---> Servlet
+			B. 根据请求参数和内容体确定请求类型
+			C. servlet获取资源或IO等耗时操作
+			D. servlet不产生响应并返回
+			E. 当资源可用，要么在统一线程上继续处理事件，要么通过ASyncContext分配到容器中的一个资源上。
+	4）服务的终止
+		调用destroy方法之前，必须让当前正在执行service方法的任何线程完成执行，或者超过了服务器定义的时间限制。一旦调用了destroy方法，容器再无法路由其他请求到该servlet实例了。如果要用，必须新实例化新的servlet。
+			

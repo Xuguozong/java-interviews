@@ -1,0 +1,9 @@
+﻿1. 部署描述符的“metadata-complete”属性
+	Web应用部署描述符的web-app元素包含一个新的“metadata-complete”，她定义了web描述符是否完整，若设置为true，部署工具必须忽略存在于应用的类文件中的所有指定部署信息的servlet注解和web fragments。
+	@WebServlet/@WebFilter/@WebInitParam/@WebListener/@MultipartConfig,其中，被@WebListener注解的类必须实现以下接口的一个或多个：
+	ServletContextListener/ServletContextAttributeListener/ServletRequestListener/ServletRequestAttributeListener/HttpSessionListener/HttpSessionAttributeListener/HttpSessionIdListener
+	
+2. web-fragment
+	web-fragment是web.xml的部分或全部，可以在一个类库或框架jar包的META-INF目录指定和包括。
+	
+	

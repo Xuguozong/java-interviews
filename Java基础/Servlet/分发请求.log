@@ -1,0 +1,2 @@
+﻿1. RequestDispatcher接口提供了一种机制来把请求转发给另一个servlet处理或在请求中包含另一个servlet的输出。
+

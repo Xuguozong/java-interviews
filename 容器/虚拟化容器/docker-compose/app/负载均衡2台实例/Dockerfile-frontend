@@ -1,0 +1,7 @@
+FROM nginx:1.21.1-alpine
+# 将 npm run build 生成的 dist 下的文件拷贝到容器中
+COPY dist /usr/share/nginx/html/
+# 拷贝 nginx 配置文件到指定目录下
+COPY nginx/ /etc/nginx/
+
+EXPOSE 80

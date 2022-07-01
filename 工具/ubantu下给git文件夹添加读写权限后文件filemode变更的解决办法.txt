@@ -1,0 +1,10 @@
+背景：
+	设置 ubantu 作为开发环境，git clone 项目导入 IDE 后，没有编辑权限，用了 chmod +777 -R 
+	结果改变了文件模式(filemode)，所有的文件都显示修改了
+现象：
+	# git diff 任意文件
+	提示：
+		old mode 100644
+		new mode 100777
+解决办法：
+	# git config --add core.filemode false  # 忽略文件模式的差异

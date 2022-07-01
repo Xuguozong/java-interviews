@@ -1,0 +1,18 @@
+version: '2'
+services:
+  afs-1:
+    image: afs:v1
+    ports:
+      - 18080:8080
+  afs-2:
+    image: afs:v1
+    ports:
+      - 28080:8080
+  afs-3:
+    image: afs:v1
+    ports:
+      - 38080:8080
+  afs-4:
+    image: afs:v1
+    ports:
+      - 48080:8080

@@ -1,0 +1,11 @@
+﻿1. 会话跟踪机制
+	Cookie、SSL会话、URL重写（当客户端不接受cookie时，服务器可使用URL重写作为会话跟踪的基础）
+	
+2. 会话范围
+	HttpSession对象必须被限定在应用（或Servlet上下文）级别。
+
+3. 绑定属性到对话
+	HttpSessionBindingListener接口的valueBound/valueUnbound方法用于标识一个对象被绑定到会话或从会话解除绑定时行为。
+	
+4. 重要会话语义
+	容器必须在迁移会话时通知实现了HttpSessionActivationListener的所有会话属性。它们必须在序列化会话之前通知钝化监听器，在反序列化之后通知激活监听器。

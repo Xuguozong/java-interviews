@@ -1,0 +1,7 @@
+redis-cli -h 192.168.112.1 -p 6384 -a 123456 cluster replicate 8d6bad511f2411f81e4a75825c488b9ccc0192a2
+redis-cli -h 192.168.112.1 -p 6385 -a 123456 cluster replicate fce4d68e02fabe4e00c86110de727a928a2e513c
+redis-cli -h 192.168.112.1 -p 6386 -a 123456 cluster replicate 8ab2d919e3617e1a29561b013a4eb5ccc4e7f83e
+
+redis-cli -h 192.168.112.1 -p 6381 -a 123456 cluster addslots $(seq 0 5500)
+redis-cli -h 192.168.112.1 -p 6382 -a 123456 cluster addslots $(seq 5501 11000)
+redis-cli -h 192.168.112.1 -p 6383 -a 123456 cluster addslots $(seq 11001 16383)
